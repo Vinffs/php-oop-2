@@ -1,12 +1,22 @@
-body {
-  background-color: lightslategrey;
+.bg-color {
+  background-color: lightslategrey !important;
 }
 
 .thumb {
   height: 400px;
 }
 
+.gamePic {
+  width: 100%;
+  height: 200px;
+}
+
 .flag {
   height: 30px;
   width: 30px;
+}
+
+.logo {
+  width: 250px;
+  border-radius: 50%;
 }
