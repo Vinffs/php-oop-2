@@ -18,10 +18,22 @@
         </div>
       </div>
       <?php foreach ($genres as $genre) { ?>
-        <div>
-          <?= $genre->name ?>
-        </div>
+      <div>
+        <?= $genre->name ?>
+      </div>
       <?php } ?>
+      <div>
+        <div>
+          Quantity: <?= $quantity ?>
+        </div>
+        <div>
+          Original Price: <?= $price ?>$
+        </div>
+        <?php if ($sconto > 0) { ?>
+        <div>Discounted Price : <?= $price * (100 - $sconto) / 100 ?>$ ( <?= $sconto ?> %)
+        </div>
+        <?php } ?>
+      </div>
     </div>
   </div>
 </div>
