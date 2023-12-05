@@ -6,9 +6,11 @@
       <h5 class="card-title text-center py-1">
         <?= $title ?>
       </h5>
+      <?php if (isset($content)) { ?>
       <p class="card-text py-2">
         <?= $content ?>
       </p>
+      <?php } ?>
       <?php if (isset($custom)) { ?>
       <div class="d-flex justify-content-between align-items-start">
         <div>
@@ -40,6 +42,13 @@
         </div>
 
         <?php } ?>
+      </div>
+      <?php } ?>
+
+      <?php if (isset($playtime)) { ?>
+      <div>
+        <span class="mb-1 fw-bold">Play Hours:</span>
+        <?= $playtime ?> Hours
       </div>
       <?php } ?>
 

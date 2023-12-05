@@ -7,6 +7,7 @@ $books = Book::fetchAll();
 ?>
 
 <section class="container">
+  <h2>Books</h2>
   <div class="row">
     <?php foreach ($books as $book) {
       $book->printBooks();

@@ -1,32 +1,29 @@
 <?php
 include __DIR__ . '/Product.php';
 
-class Book extends Product
+class Game extends Product
 {
-  public string $id;
+  public int $id;
   public string $thumb;
   public string $title;
 
-  public string $description;
-  public array $authors;
+  public string $playtime;
 
-  public function __construct($id, $thumb, $title, $description, $authors, $price, $quantity, $sconto)
+  public function __construct($id, $thumb, $title, $playtime, $price, $quantity, $sconto)
   {
     parent::__construct($price, $quantity, $sconto);
 
     $this->id = $id;
     $this->thumb = $thumb;
     $this->title = $title;
-    $this->description = $description;
-    $this->authors = $authors;
+    $this->playtime = $playtime;
   }
 
-  public function printBooks()
+  public function printGames()
   {
     $image = $this->thumb;
     $title = $this->title;
-    $content = substr($this->description, 0, 100) . "...";
-    $authors = $this->authors;
+    $playtime = $this->playtime;
     $price = $this->price;
     $quantity = $this->quantity;
     $sconto = $this->sconto;
@@ -37,16 +34,17 @@ class Book extends Product
 
   public static function fetchAll()
   {
-    $bookString = file_get_contents(__DIR__ . "/books_db.json");
-    $booksList = json_decode($bookString, true);
-    $books = [];
+    $gameString = file_get_contents(__DIR__ . "/steam_db.json");
+    $gameList = json_decode($gameString, true);
+    $games = [];
 
-    foreach ($booksList as $book) {
+    foreach ($gameList as $game) {
+      $image = "https://cdn.cloudflare.steamstatic.com/steam/apps/" . $game['appid'] . "/header.jpg";
       $quantity = rand(0, 100);
       $price = rand(10, 200);
       $sconto = ceil(rand(0, 50) / 5) * 5;
-      $books[] = new Book($book['_id'], $book['thumbnailUrl'], $book['title'], $book['longDescription'], $book['authors'], $quantity, $price, $sconto);
+      $games[] = new Game($game['appid'], $image, $game['name'], $game['playtime_forever'], $price, $quantity, $sconto);
     }
-    return $books;
+    return $games;
   }
 }
