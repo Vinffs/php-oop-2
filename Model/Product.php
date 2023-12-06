@@ -12,4 +12,5 @@ class Product
     $this->quantity = $quantity;
     $this->sconto = $sconto;
   }
+
 }

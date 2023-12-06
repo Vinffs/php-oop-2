@@ -7,51 +7,63 @@
       <h5 class="card-title text-center py-2">
         <?= $title ?>
       </h5>
-      <?php if(isset($content)) { ?>
-        <p class="card-text py-2">
-          <?= $content ?>
-        </p>
+      <?php if (isset($content)) { ?>
+      <p class="card-text py-2">
+        <?= $content ?>
+      </p>
       <?php } ?>
-      <?php if(isset($custom)) { ?>
-        <div class="d-flex justify-content-between align-items-start">
-          <div>
-            <?= $custom ?>
-          </div>
-          <div>
-            <img class="flag" src="./img/<?= $language ?>.svg" alt="<?= $language ?>">
-          </div>
-        </div>
-      <?php } ?>
-
-      <?php if(isset($genres)) { ?>
-        <div class="py-2">
-          <p class="mb-1 fw-bold">Genres:</p>
-          <?php foreach($genres as $genre) { ?>
-            <div>
-              <?= $genre->name ?>
-            </div>
-          <?php } ?>
-        </div>
-      <?php } ?>
-
-      <?php if(isset($authors)) { ?>
-        <div class="py-2">
-          <p class="mb-1 fw-bold">Authors:</p>
-          <?php foreach($authors as $author) { ?>
-            <div>
-              <?= $author ?>
-            </div>
-
-          <?php } ?>
-        </div>
-      <?php } ?>
-
-      <?php if(isset($playtime)) { ?>
+      <?php if (isset($custom)) { ?>
+      <div class="d-flex justify-content-between align-items-start">
         <div>
-          <span class="mb-1 fw-bold">Play Hours:</span>
-          <?= $playtime ?> Hours
+          <?= $custom ?>
         </div>
+        <div>
+          <img class="flag" src="./img/<?= $language ?>.svg" alt="<?= $language ?>">
+        </div>
+      </div>
       <?php } ?>
+
+      <?php if (isset($genres)) { ?>
+      <div class="py-2">
+        <p class="mb-1 fw-bold">Genres:</p>
+        <?php foreach ($genres as $genre) { ?>
+        <div>
+          <?= $genre->name ?>
+        </div>
+        <?php } ?>
+      </div>
+      <?php } ?>
+
+      <?php if (isset($authors)) { ?>
+      <div class="py-2">
+        <p class="mb-1 fw-bold">Authors:</p>
+        <?php foreach ($authors as $author) { ?>
+        <div>
+          <?= $author ?>
+        </div>
+
+        <?php } ?>
+      </div>
+      <?php } ?>
+
+
+
+      <?php if (isset($playtime)) { ?>
+      <div>
+        <span class="mb-1 fw-bold">Play Hours:</span>
+        <?php
+          if ($playtime === 0 && $error) { ?>
+        <span class="text-danger">
+          <?= $error ?>
+        </span>
+        <?php } else { ?>
+        <span>
+          <?= $playtime ?> Hours
+        </span>
+        <?php } ?>
+      </div>
+      <?php } ?>
+
 
       <div>
         <span class="mb-1 fw-bold">Quantity:</span>
@@ -61,12 +73,12 @@
         <span class="mb-1 fw-bold">Original Price:</span>
         <?= $price ?>$
       </div>
-      <?php if($sconto > 0) { ?>
-        <div>
-          <span class="mb-1 fw-bold">Discounted Price:</span>
-          <?= $price * (100 - $sconto) / 100 ?>$ (
-          <?= $sconto ?> % )
-        </div>
+      <?php if ($sconto > 0) { ?>
+      <div>
+        <span class="mb-1 fw-bold">Discounted Price:</span>
+        <?= $price * (100 - $sconto) / 100 ?>$ (
+        <?= $sconto ?> % )
+      </div>
       <?php } ?>
     </div>
 
