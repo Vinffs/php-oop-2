@@ -1,16 +1,13 @@
 <?php
-include __DIR__ . '/Product.php';
+include __DIR__.'/Product.php';
+include __DIR__.'./../Traits/Common.php';
 
-class Game extends Product
-{
-  public int $id;
-  public string $thumb;
-  public string $title;
+class Game extends Product {
+  use Common;
 
   public string $playtime;
 
-  public function __construct($id, $thumb, $title, $playtime, $price, $quantity, $sconto)
-  {
+  public function __construct($id, $thumb, $title, $playtime, $price, $quantity, $sconto) {
     parent::__construct($price, $quantity, $sconto);
 
     $this->id = $id;
@@ -19,27 +16,25 @@ class Game extends Product
     $this->playtime = $playtime;
   }
 
-  public function printGames()
-  {
-    $image = $this->thumb;
-    $title = $this->title;
-    $playtime = $this->playtime;
-    $price = $this->price;
-    $quantity = $this->quantity;
-    $sconto = $this->sconto;
-
-    include __DIR__ . "/../Views/card.php";
+  public function formatCard() {
+    $card = [
+      'image' => $this->thumb,
+      'title' => $this->title,
+      'playtime' => $this->playtime,
+      'price' => $this->price,
+      'quantity' => $this->quantity,
+      'sconto' => $this->sconto,
+    ];
+    return $card;
   }
 
-
-  public static function fetchAll()
-  {
-    $gameString = file_get_contents(__DIR__ . "/steam_db.json");
+  public static function fetchAll() {
+    $gameString = file_get_contents(__DIR__."/steam_db.json");
     $gameList = json_decode($gameString, true);
     $games = [];
 
-    foreach ($gameList as $game) {
-      $image = "https://cdn.cloudflare.steamstatic.com/steam/apps/" . $game['appid'] . "/header.jpg";
+    foreach($gameList as $game) {
+      $image = "https://cdn.cloudflare.steamstatic.com/steam/apps/".$game['appid']."/header.jpg";
       $quantity = rand(0, 100);
       $price = rand(10, 200);
       $sconto = ceil(rand(0, 50) / 5) * 5;

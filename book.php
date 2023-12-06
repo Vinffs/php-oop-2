@@ -1,7 +1,7 @@
 <?php
 
-include __DIR__ . "/Views/header.php";
-include __DIR__ . "/Model/Book.php";
+include __DIR__."/Views/header.php";
+include __DIR__."/Model/Book.php";
 $books = Book::fetchAll();
 
 ?>
@@ -9,13 +9,13 @@ $books = Book::fetchAll();
 <section class="container">
   <h2>Books</h2>
   <div class="row">
-    <?php foreach ($books as $book) {
-      $book->printBooks();
+    <?php foreach($books as $book) {
+      $book->printCard($book->formatCard());
     } ?>
   </div>
 
 </section>
 
 <?php
-include __DIR__ . "/Views/footer.php";
+include __DIR__."/Views/footer.php";
 ?>

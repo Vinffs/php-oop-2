@@ -7,12 +7,12 @@
       <h5 class="card-title text-center py-2">
         <?= $title ?>
       </h5>
-      <?php if (isset($content)) { ?>
+      <?php if(isset($content)) { ?>
         <p class="card-text py-2">
           <?= $content ?>
         </p>
       <?php } ?>
-      <?php if (isset($custom)) { ?>
+      <?php if(isset($custom)) { ?>
         <div class="d-flex justify-content-between align-items-start">
           <div>
             <?= $custom ?>
@@ -23,10 +23,10 @@
         </div>
       <?php } ?>
 
-      <?php if (isset($genres)) { ?>
+      <?php if(isset($genres)) { ?>
         <div class="py-2">
           <p class="mb-1 fw-bold">Genres:</p>
-          <?php foreach ($genres as $genre) { ?>
+          <?php foreach($genres as $genre) { ?>
             <div>
               <?= $genre->name ?>
             </div>
@@ -34,10 +34,10 @@
         </div>
       <?php } ?>
 
-      <?php if (isset($authors)) { ?>
+      <?php if(isset($authors)) { ?>
         <div class="py-2">
           <p class="mb-1 fw-bold">Authors:</p>
-          <?php foreach ($authors as $author) { ?>
+          <?php foreach($authors as $author) { ?>
             <div>
               <?= $author ?>
             </div>
@@ -46,7 +46,7 @@
         </div>
       <?php } ?>
 
-      <?php if (isset($playtime)) { ?>
+      <?php if(isset($playtime)) { ?>
         <div>
           <span class="mb-1 fw-bold">Play Hours:</span>
           <?= $playtime ?> Hours
@@ -61,7 +61,7 @@
         <span class="mb-1 fw-bold">Original Price:</span>
         <?= $price ?>$
       </div>
-      <?php if ($sconto > 0) { ?>
+      <?php if($sconto > 0) { ?>
         <div>
           <span class="mb-1 fw-bold">Discounted Price:</span>
           <?= $price * (100 - $sconto) / 100 ?>$ (
